@@ -237,22 +237,31 @@ There are several alternate timing scenarios: if B decided to commit
 in parallel to A, before receiving A's update:
 
            NODE A                NODE B
-
+                                          Committed: []
+                                          Staged:    [Y]
                          <----------- ADD HTLC Y
+    Committed: []                                  
+    Staged:    [Y]
+    
+    
+    Committed: []                         Committed: [Y]
+    Staged:    [X Y]                      Staged:    []
               ADD HTLC X -------  --- SIG 0
-    Committed: []               \/        Committed: [Y]
-    Staged:    [X Y]            /\        Staged:    []
-                               /  -->
+                                \/
+    Committed: [Y X]            /\
+    Staged:    []              /  -->
                    SIG 1 ---  /           Committed: [Y]
-    Committed: [Y X]        \/            Staged:    [X]               
-    Staged:    []           /\   
+                            \/            Staged:    [X]               
+                            /\   
                          <--  ------> 
-    Committed: [Y]                        Committed: [Y]
-    Staged:    [X]                        Staged:    [X]
+    Committed: [Y]
+    Staged:    [X]
     
               REVOCATION ----------->
 
                          <----------- REVOCATION
+                                          Committed: [Y X]     
+                                          Staged:    []
                          <----------- SIG 1
     Committed: [Y X]
     Staged:    []
