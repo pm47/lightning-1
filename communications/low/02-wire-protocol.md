@@ -236,7 +236,7 @@ preimage for its old commitment transaction:
 There are several alternate timing scenarios: if B decided to commit
 in parallel to A, before receiving A's update:
 
-           NODE A                NODE B
+           NODE A                          NODE B
                                           Committed: []
                                           Staged:    [Y]
                          <----------- ADD HTLC Y
