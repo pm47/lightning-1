@@ -238,23 +238,25 @@ in parallel to A, before receiving A's update:
 
            NODE A                NODE B
 
-                  <---------- ADD HTLC Y
-         ADD HTLC X --  ----  SIG 0
-                      \/
-                      /\
-                  <---  ----> 
-         SIG 1 ----------->
-		                       Committed: [X Y]
-	                           Staged:    []
-    Committed: [Y]
-    Staged:    [X]
-         REVOCATION --------->
+                         <----------- ADD HTLC Y
+              ADD HTLC X -------  --- SIG 0
+    Committed: []               \/        Committed: [Y]
+    Staged:    [X Y]            /\        Staged:    []
+                               /  -->
+                   SIG 1 ---  /           Committed: [Y]
+    Committed: [Y X]        \/            Staged:    [X]               
+    Staged:    []           /\   
+                         <--  ------> 
+    Committed: [Y]                        Committed: [Y]
+    Staged:    [X]                        Staged:    [X]
+    
+              REVOCATION ----------->
 
-                  <---------- REVOCATION
-                  <---------- SIG 1
+                         <----------- REVOCATION
+                         <----------- SIG 1
     Committed: [Y X]
     Staged:    []
-         REVOCATION --------->
+              REVOCATION ----------->
 
 Here, A received the signature and commits B's update but not its own
 (because B didn't acknowledge it); later B responds with a signature
