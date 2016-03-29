@@ -245,7 +245,7 @@ in parallel to A, before receiving A's update:
     
     
     Committed: []                             Committed: [Y]
-    Staged:    [X Y]                          Staged:    []
+    Staged:    [Y X]                          Staged:    []
                 ADD HTLC X -------  --- SIG 0
                                   \/
     Committed: [Y X]              /\
