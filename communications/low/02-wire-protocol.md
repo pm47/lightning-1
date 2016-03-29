@@ -239,8 +239,10 @@ in parallel to A, before receiving A's update:
            NODE A                NODE B
 
                   <---------- ADD HTLC Y
-         ADD HTLC X ------>
-                  <---------- SIG 0
+         ADD HTLC X --  ----  SIG 0
+                      \/
+                      /\
+                  <---  ----> 
          SIG 1 ----------->
 		                       Committed: [X Y]
 	                           Staged:    []
