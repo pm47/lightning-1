@@ -669,8 +669,8 @@ A node MUST fail to route any HTLC added received after it sent `close_clearing`
 
 Once clearing is complete the final current commitment transactions
 will have no HTLCs, and fee negotiation begins.  Each node chooses a
-fee and signs the close transaction the `script_pubkey` fields from
-the `close_celearing` messages and that fee, and sends the signature.
+fee and signs the close transaction with the `script_pubkey` fields from
+the `close_clearing` messages and that fee, and sends the signature.
 The process terminates when both agree on a fee, or one side fails the
 connection.
 
